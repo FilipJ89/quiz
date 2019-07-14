@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 public class Reply {
-
+//lal
     @Id
     @GeneratedValue
     @Column(name = "reply_id")
