@@ -19,12 +19,12 @@ public class Question {
     boolean isOpen;
 
     // TODO What's with this? Another table?
-    List<String> multipleChoices;
+//    List<String> multipleChoices;
 
-    @OneToMany
-    @JoinTable(
-            name = "questions_replies",
-            joinColumns = @JoinColumn(name = "question_id"),
-            inverseJoinColumns = @JoinColumn(name = "question_id"))
-    List<Reply> replies;
+//    @OneToMany
+//    @JoinTable(
+//            name = "questions_replies",
+//            joinColumns = @JoinColumn(name = "question_id"),
+//            inverseJoinColumns = @JoinColumn(name = "question_id"))
+//    List<Reply> replies;
 }

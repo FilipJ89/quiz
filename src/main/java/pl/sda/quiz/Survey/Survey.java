@@ -25,10 +25,10 @@ public class Survey {
     @Column(name = "long_description", length = 10000)
     String fullDescription;
 
-    @OneToMany
-    @JoinTable(
-            name = "survey_questions",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "question_id"))
-    List<Question> questionList;
+//    @OneToMany
+//    @JoinTable(
+//            name = "survey_questions",
+//            joinColumns = @JoinColumn(name = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "question_id"))
+//    List<Question> questionList;
 }
