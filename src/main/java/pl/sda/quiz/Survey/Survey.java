@@ -25,6 +25,10 @@ public class Survey {
     @Column(name = "long_description", length = 10000)
     String fullDescription;
 
+    @Column(name = "is_quiz")
+    boolean isQuiz;
+
+
 //    @OneToMany
 //    @JoinTable(
 //            name = "survey_questions",

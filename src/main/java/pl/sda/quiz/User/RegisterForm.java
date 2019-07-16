@@ -13,16 +13,16 @@ import javax.validation.constraints.Size;
 @ToString(exclude = {"password"})
 public class RegisterForm {
 
-    @NotBlank(message = "Field can't be left empty")
+    @NotBlank(message = "* field cannot be left empty")
     private String firstName;
 
-    @NotBlank(message = "Field can't be left empty")
+    @NotBlank(message = "* field cannot be left empty")
     private String lastName;
 
     @Pattern(regexp = "[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\\.[a-z]{2,3}",
-            message = "Invalid email")
+            message = "* invalid email form")
     private String email;
 
-    @Size(min = 5)
+    @Size(min = 5, message = "* minimum size is 5 characters")
     private String password;
 }
