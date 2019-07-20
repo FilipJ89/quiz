@@ -58,11 +58,10 @@
 <!--            <version>6.0.5</version>-->
 <!--        </dependency>-->
         <!-- Hibernate 5.2.11 Final dependency-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-core</artifactId>-->
-<!--            <version>5.2.11.Final</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
     </dependencies>
 
 

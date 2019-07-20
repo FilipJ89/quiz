@@ -1,6 +1,8 @@
 package pl.sda.quiz.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.sda.quiz.entity.Question;
 
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "survey")
 public class Survey {
@@ -29,12 +33,6 @@ public class Survey {
     @OneToMany(mappedBy = "survey")
     private List <Question> questions;
 
-    //public Survey (){}
-
-    public Survey(String description) {
-        this.description = description;
-        this.creationDate = new Date();
-    }
 
     public int getId() {
         return id;

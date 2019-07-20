@@ -2,9 +2,9 @@ package pl.sda.quiz.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.quiz.Survey.SurveyRepository;
 import pl.sda.quiz.dao.QuestionRepository;
 import pl.sda.quiz.dao.ReplyRepository;
+import pl.sda.quiz.dao.SurveyRepository;
 import pl.sda.quiz.entity.Survey;
 
 import java.util.List;
@@ -14,8 +14,11 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class SurveyController {
 
+    @Autowired
     private SurveyRepository surveyRepository;
+    @Autowired
     private QuestionRepository questionRepository;
+    @Autowired
     private ReplyRepository replyRepository;
 
 

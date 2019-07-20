@@ -1,6 +1,8 @@
 package pl.sda.quiz.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="question")
 public class Question {
@@ -28,43 +32,11 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<Reply> answers;
 
-    //public Question (){}
 
-    public Question(String question) {
-        this.question = question;
-        //this.survey = survey;
-    }
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getQuestion() {
-//        return question;
-//    }
-//
-//    public void setQuestion(String question) {
+//    public Question(String question) {
 //        this.question = question;
-//    }
-//
-//    public Survey getSurvey() {
-//        return survey;
-//    }
-//
-//    public void setSurvey(Survey survey) {
-//        this.survey = survey;
-//    }
-//
-//    public Reply getCorrectAnswer() {
-//        return correctAnswer;
-//    }
-//
-//    public void setCorrectAnswer(Reply correctAnswer) {
-//        this.correctAnswer = correctAnswer;
+//        //this.survey = survey;
 //    }
 
     public List<Reply> getAnswers() {

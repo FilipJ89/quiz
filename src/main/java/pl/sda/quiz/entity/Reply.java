@@ -1,9 +1,16 @@
 package pl.sda.quiz.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.sda.quiz.entity.Question;
 
 import javax.persistence.*;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "reply")
 public class Reply {
@@ -25,40 +32,9 @@ public class Reply {
 
     //public Reply (){}
 
-    public Reply(String answer, boolean isCorrect) {
-        this.answer = answer;
-        this.isCorrect = isCorrect;
-    }
+//    public Reply(String answer, boolean isCorrect) {
+//        this.answer = answer;
+//        this.isCorrect = isCorrect;
+//    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public boolean isCorrect() {
-        return isCorrect;
-    }
-
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
 }
