@@ -1,17 +1,29 @@
 package pl.sda.quiz.Reply;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+import pl.sda.quiz.Question.Question;
 
+import javax.persistence.*;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "reply")
 public class Reply {
-//lal
     @Id
-    @GeneratedValue
-    @Column(name = "reply_id")
-    Integer id;
-    @Column(name = "open_reply")
-    String reply;
-    @Column(name = "is_valid")
-    boolean isValid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "answer")
+    private String answer;
+
+    @Column(name = "is_correct")
+    private boolean isCorrect;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "question_id")
+    private Question question;
+
 }

@@ -1,30 +1,32 @@
 package pl.sda.quiz.Question;
 
+import lombok.Getter;
+import lombok.Setter;
 import pl.sda.quiz.Reply.Reply;
+import pl.sda.quiz.Survey.Survey;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
+@Table(name = "question")
 public class Question {
 
     @Id
-    @GeneratedValue
-    @Column(name = "question_id")
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    String question;
+    @Column(name = "text")
+    private String question;
 
-    @Column(name = "is_open")
-    boolean isOpen;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
 
-    // TODO What's with this? Another table?
-//    List<String> multipleChoices;
+    @OneToMany(mappedBy = "question")
+    private List<Reply> answers;
 
-//    @OneToMany
-//    @JoinTable(
-//            name = "questions_replies",
-//            joinColumns = @JoinColumn(name = "question_id"),
-//            inverseJoinColumns = @JoinColumn(name = "question_id"))
-//    List<Reply> replies;
 }

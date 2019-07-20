@@ -6,6 +6,7 @@ import pl.sda.quiz.Question.Question;
 import pl.sda.quiz.Reply.Reply;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,23 +17,17 @@ import java.util.Map;
 public class Survey {
 
     @Id
-    @GeneratedValue
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-    @Column(name = "short_description", length = 500)
-    String shortDescription;
+    @Column(name="description")
+    private String description;
 
-    @Column(name = "long_description", length = 10000)
-    String fullDescription;
+    @Column(name = "creation_date")
+    private Date creationDate;
 
-    @Column(name = "is_quiz")
-    boolean isQuiz;
+    @OneToMany(mappedBy = "survey")
+    private List <Question> questions;
 
-
-//    @OneToMany
-//    @JoinTable(
-//            name = "survey_questions",
-//            joinColumns = @JoinColumn(name = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "question_id"))
-//    List<Question> questionList;
 }
