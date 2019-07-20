@@ -1,6 +1,6 @@
-package pl.sda.quiz.Reply;
+package pl.sda.quiz.entity;
 
-import pl.sda.quiz.Question.Question;
+import pl.sda.quiz.entity.Question;
 
 import javax.persistence.*;
 
@@ -23,7 +23,7 @@ public class Reply {
     @JoinColumn(name = "question_id")
     private Question question;
 
-    public Reply (){}
+    //public Reply (){}
 
     public Reply(String answer, boolean isCorrect) {
         this.answer = answer;

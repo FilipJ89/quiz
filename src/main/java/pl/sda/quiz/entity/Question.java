@@ -1,9 +1,7 @@
-package pl.sda.quiz.Question;
+package pl.sda.quiz.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.sda.quiz.Reply.Reply;
-import pl.sda.quiz.Survey.Survey;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,11 +28,11 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<Reply> answers;
 
-    public Question (){}
+    //public Question (){}
 
-    public Question(String question, Survey survey, Reply correctAnswer) {
-        //this.question = question;
-        this.survey = survey;
+    public Question(String question) {
+        this.question = question;
+        //this.survey = survey;
     }
 
 //    public int getId() {
