@@ -23,7 +23,7 @@ public class Question {
     private int id;
 
     @Column(name = "text")
-    private String question;
+    private String text;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "survey_id")
@@ -32,12 +32,10 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<Reply> answers;
 
-
-
-//    public Question(String question) {
-//        this.question = question;
-//        //this.survey = survey;
-//    }
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
+        this.survey.getQuestions().add(this);
+    }
 
     public List<Reply> getAnswers() {
         return answers;

@@ -1,0 +1,113 @@
+package pl.sda.quiz;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import pl.sda.quiz.dao.QuestionRepository;
+import pl.sda.quiz.dao.ReplyRepository;
+import pl.sda.quiz.dao.SurveyRepository;
+import pl.sda.quiz.entity.Question;
+import pl.sda.quiz.entity.Reply;
+import pl.sda.quiz.entity.Survey;
+
+import javax.annotation.PostConstruct;
+
+@Service
+public class InitializerService {
+    @Autowired
+    private SurveyRepository surveyRepository;
+
+    @Autowired
+    private QuestionRepository questionRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
+
+
+    @Transactional
+    public void initAnswers() {
+        if (replyRepository.count() != 0) {
+            return;
+        }
+        // save data to db
+        Question q1 = questionRepository.findById(1).get();
+        Reply r1 = new Reply();
+        r1.setQuestion(q1);
+        r1.setAnswer("Hawajska");
+        replyRepository.save(r1);
+
+        Reply r2 = new Reply();
+        r2.setQuestion(q1);
+        r2.setAnswer("Pepperoni");
+        replyRepository.save(r2);
+
+        Reply r3 = new Reply();
+        r3.setQuestion(q1);
+        r3.setAnswer("Margherita");
+        replyRepository.save(r3);
+
+        Reply r4 = new Reply();
+        r4.setQuestion(q1);
+        r4.setAnswer("Capriciosa");
+        replyRepository.save(r4);
+
+        Question q2 = questionRepository.findById(2).get();
+        Reply r5 = new Reply();
+        r5.setQuestion(q2);
+        r5.setAnswer("Kot");
+        replyRepository.save(r5);
+
+        Reply r6 = new Reply();
+        r6.setQuestion(q2);
+        r6.setAnswer("Pies");
+        replyRepository.save(r6);
+
+        Reply r7 = new Reply();
+        r7.setQuestion(q2);
+        r7.setAnswer("Chomik");
+        replyRepository.save(r5);
+
+        Reply r8 = new Reply();
+        r8.setQuestion(q2);
+        r8.setAnswer("Koń");
+        replyRepository.save(r8);
+    }
+
+
+    @Transactional
+    public void initQuestions() {
+        if (questionRepository.count() != 0) {
+            return;
+        }
+        // save data to db
+        Survey s1 = surveyRepository.findById(1).get();
+        Question q1 = new Question();
+        q1.setSurvey(s1);
+        q1.setText("Jaka pizza jest najlepsza?");
+        questionRepository.save(q1);
+
+        Survey s2 = surveyRepository.findById(2).get();
+        Question q2 = new Question();
+        q2.setSurvey(s2);
+        q2.setText("Jakiego zwierzaczka lubisz najbardziej?");
+        questionRepository.save(q2);
+    }
+
+
+    @Transactional
+    public void initSurveys() {
+        if (surveyRepository.count() != 0) {
+            return;
+        }
+        // save data to db
+        Survey s1 = new Survey();
+        s1.setTitle("Jedzenie");
+        s1.setDescription("Ankieta o jedzeniu");
+        surveyRepository.save(s1);
+
+        Survey s2 = new Survey();
+        s2.setTitle("Zwierzaczki");
+        s2.setDescription("Ankieta o zwierzeczkach");
+        surveyRepository.save(s2);
+    }
+}

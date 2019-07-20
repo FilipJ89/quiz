@@ -24,17 +24,15 @@ public class Reply {
     private String answer;
 
     @Column(name = "is_correct")
-    private boolean isCorrect;
+    private boolean correct;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id")
     private Question question;
 
-    //public Reply (){}
-
-//    public Reply(String answer, boolean isCorrect) {
-//        this.answer = answer;
-//        this.isCorrect = isCorrect;
-//    }
+    public void setQuestion(Question question) {
+        this.question = question;
+        this.question.getAnswers().add(this);
+    }
 
 }
