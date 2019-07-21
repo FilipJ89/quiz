@@ -16,6 +16,7 @@ public class DataInitializer {
        initializerService.initAnswers();
        initializerService.initUsers();
 
+
        //initializerService.deleteSurvey();
    }
 

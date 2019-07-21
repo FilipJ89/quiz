@@ -143,6 +143,12 @@ public class InitializerService {
     }
 
 //    @Transactional
+//    public User findUserByName(String string){
+//        return userRepository.findUserByName(string);
+//
+//    }
+
+//    @Transactional
 //    public void deleteSurvey(){
 //        Survey s1 = surveyRepository.findSurveyByTitle("Jedzenie");
 //        surveyRepository.delete(s1);
