@@ -10,8 +10,6 @@ import pl.sda.quiz.entity.Question;
 import pl.sda.quiz.entity.Reply;
 import pl.sda.quiz.entity.Survey;
 
-import javax.annotation.PostConstruct;
-
 @Service
 public class InitializerService {
     @Autowired
@@ -30,7 +28,9 @@ public class InitializerService {
             return;
         }
         // save data to db
-        Question q1 = questionRepository.findById(1).get();
+        //Question q1 = questionRepository.findById(1).get();
+        Question q1 = questionRepository.findQuestionByText("Jaka pizza jest najlepsza?");
+
         Reply r1 = new Reply();
         r1.setQuestion(q1);
         r1.setAnswer("Hawajska");
@@ -51,7 +51,8 @@ public class InitializerService {
         r4.setAnswer("Capriciosa");
         replyRepository.save(r4);
 
-        Question q2 = questionRepository.findById(2).get();
+        //Question q2 = questionRepository.findById(2).get();
+        Question q2 = questionRepository.findQuestionByText("Jakiego zwierzaczka lubisz najbardziej?");
         Reply r5 = new Reply();
         r5.setQuestion(q2);
         r5.setAnswer("Kot");
@@ -80,13 +81,15 @@ public class InitializerService {
             return;
         }
         // save data to db
-        Survey s1 = surveyRepository.findById(1).get();
+        //Survey s1 = surveyRepository.findById(1).get();
+        Survey s1 = surveyRepository.findSurveyByTitle("Jedzenie");
         Question q1 = new Question();
         q1.setSurvey(s1);
         q1.setText("Jaka pizza jest najlepsza?");
         questionRepository.save(q1);
 
-        Survey s2 = surveyRepository.findById(2).get();
+//        Survey s2 = surveyRepository.findById(2).get();
+        Survey s2 = surveyRepository.findSurveyByTitle("Zwierzaczki");
         Question q2 = new Question();
         q2.setSurvey(s2);
         q2.setText("Jakiego zwierzaczka lubisz najbardziej?");

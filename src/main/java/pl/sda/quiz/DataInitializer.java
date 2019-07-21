@@ -24,6 +24,6 @@ public class DataInitializer {
        initializerService.initSurveys();
        initializerService.initQuestions();
        initializerService.initAnswers();
-   };
+   }
 
 }
