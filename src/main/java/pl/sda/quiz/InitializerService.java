@@ -12,6 +12,8 @@ import pl.sda.quiz.entity.Question;
 import pl.sda.quiz.entity.Reply;
 import pl.sda.quiz.entity.Survey;
 
+import java.util.Optional;
+
 @Service
 public class InitializerService {
     @Autowired
@@ -139,4 +141,10 @@ public class InitializerService {
         u2.setPassword("password");
         userRepository.save(u2);
     }
+
+//    @Transactional
+//    public void deleteSurvey(){
+//        Survey s1 = surveyRepository.findSurveyByTitle("Jedzenie");
+//        surveyRepository.delete(s1);
+//    }
 }

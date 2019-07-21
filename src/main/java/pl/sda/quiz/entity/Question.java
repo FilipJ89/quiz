@@ -29,7 +29,7 @@ public class Question {
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Reply> answers;
 
     public void setSurvey(Survey survey) {

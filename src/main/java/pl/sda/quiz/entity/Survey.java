@@ -1,14 +1,9 @@
 package pl.sda.quiz.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.sda.quiz.entity.Question;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +33,7 @@ public class Survey {
     @Column(name = "creation_date")
     private Date creationDate;
 
-    @OneToMany(mappedBy = "survey")
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL)
     private List <Question> questions = new ArrayList<>();
 
 
