@@ -3,6 +3,8 @@ package pl.sda.quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.sda.quiz.User.User;
+import pl.sda.quiz.User.UserRepository;
 import pl.sda.quiz.dao.QuestionRepository;
 import pl.sda.quiz.dao.ReplyRepository;
 import pl.sda.quiz.dao.SurveyRepository;
@@ -20,6 +22,9 @@ public class InitializerService {
 
     @Autowired
     private ReplyRepository replyRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     @Transactional
@@ -112,5 +117,26 @@ public class InitializerService {
         s2.setTitle("Zwierzaczki");
         s2.setDescription("Ankieta o zwierzeczkach");
         surveyRepository.save(s2);
+    }
+
+    @Transactional
+    public void initUsers(){
+        if (userRepository.count() != 0) {
+            return;
+        }
+
+        User u1 = new User();
+        u1.setFirstName("Jan");
+        u1.setLastName("Kowalski");
+        u1.setEmail("jk@onet.pl");
+        u1.setPassword("password");
+        userRepository.save(u1);
+
+        User u2 = new User();
+        u2.setFirstName("Stanisław");
+        u2.setLastName("Wokulski");
+        u2.setEmail("sw@onet.pl");
+        u2.setPassword("password");
+        userRepository.save(u2);
     }
 }
