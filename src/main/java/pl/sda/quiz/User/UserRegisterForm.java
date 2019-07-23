@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @ToString(exclude = {"password"})
-public class RegisterForm {
+public class UserRegisterForm {
 
     @NotBlank(message = "* field cannot be left empty")
     private String firstName;

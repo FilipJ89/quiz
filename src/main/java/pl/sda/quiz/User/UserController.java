@@ -20,22 +20,22 @@ public class UserController {
 
     @GetMapping("/registration")
     public String showRegisterForm(Model model) {
-        model.addAttribute("registerForm", new RegisterForm());
+        model.addAttribute("registerForm", new UserRegisterForm());
         return "/userForms/registration";
     }
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute @Valid RegisterForm registerForm, BindingResult bindingResult, Model model) {
+    public String registerUser(@ModelAttribute @Valid UserRegisterForm userRegisterForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "/userForms/registration";
         }
 
         User user = new User();
-        user.setFirstName(registerForm.getFirstName());
-        user.setLastName(registerForm.getLastName());
-        user.setEmail(registerForm.getEmail());
-        user.setPassword(registerForm.getPassword());
+        user.setFirstName(userRegisterForm.getFirstName());
+        user.setLastName(userRegisterForm.getLastName());
+        user.setEmail(userRegisterForm.getEmail());
+        user.setPassword(userRegisterForm.getPassword());
 
         userRepository.save(user);
         model.addAttribute("user",user);

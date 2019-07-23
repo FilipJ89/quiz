@@ -21,6 +21,9 @@ public class Survey {
     @Column(name = "id")
     private int id;
 
+    @Column
+    private String title;
+
     @Column(name="description")
     private String description;
 
