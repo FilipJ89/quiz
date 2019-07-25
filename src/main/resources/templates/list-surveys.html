@@ -43,11 +43,11 @@
 
         }
 
-        <tr th:each="tempSurveys : ${surveyKs}">
+        <tr th:each="tempSurveys : ${surveys}">
 
             <td th:text="${tempSurveys.title}" />
-<!--            <td th:text="${tempEmployee.lastName}" />-->
-<!--            <td th:text="${tempEmployee.email}" />-->
+            <td th:text="${tempSurveys.creationDate}" />
+            <td th:text="${tempSurveys.description}" />
 
         </tr>
         </tbody>

@@ -39,15 +39,15 @@ public class SurveyController {
         return "list-surveys";
     }
 
-    @GetMapping("/survey/${id}")
-    public String showSurvey(Model model){
-        // get survey from db
-        Survey survey = surveyService.findById(id);
-        //add to the spring model
-        model.addAttribute("surveys", survey);
-
-        return "survey-page";
-    }
+//    @GetMapping("/survey/${id}")
+//    public String showSurvey(Model model){
+//        // get survey from db
+//        Survey survey = surveyService.findById(id);
+//        //add to the spring model
+//        model.addAttribute("surveys", survey);
+//
+//        return "survey-page";
+//    }
 
 
 

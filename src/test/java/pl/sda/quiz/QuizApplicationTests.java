@@ -29,7 +29,7 @@ public class QuizApplicationTests {
 
     @Test
     public void contextLoads() {
-        System.out.println(surveyController.findAll());
+        System.out.println(surveyRepository.findAll());
     }
 
     @Test
