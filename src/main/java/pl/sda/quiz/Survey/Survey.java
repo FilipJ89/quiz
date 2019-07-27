@@ -6,6 +6,7 @@ import pl.sda.quiz.Question.Question;
 import pl.sda.quiz.Reply.Reply;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,14 +22,14 @@ public class Survey {
     @Column(name = "id")
     private int id;
 
-    @Column
+    @Column(name = "title")
     private String title;
 
     @Column(name="description")
     private String description;
 
     @Column(name = "creation_date")
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @OneToMany(mappedBy = "survey")
     private List <Question> questions;

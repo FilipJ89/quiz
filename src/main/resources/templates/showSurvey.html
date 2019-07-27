@@ -2,22 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:replace="fragments/libs :: libs"></div>
+    <title>Show Survey</title>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 
-<div th:object="${survey}">
-    <span th:text="*{title}" />
+<div th:object="${survey}" class="container">
+    <h3><span th:text="*{title}"/></h3>
+    <hr>
+        <!--        odwołuje się do pola question w klasie Question-->
+        <h6><span th:text="*{questions.question}"/></h6>
 
-    <div th:each="question : ${questions}">
-        <p th:text="${question.question}" />
-        <ul th:each="reply : ${replies}">
+        <!--        style="display:inline-block"-->
+        <table class="table table-bordered table-striped" style="width: 200px">
+            <tbody>
+            <tr th:each="tempReply : *{question.replies}">
 
-
-        </ul>
-
-
-    </div>
+                <!--                <td th:text="${tempReply.answer}" />-->
+                <td><input type="radio" value=th:text="${tempReply.answer}" name="answer"/> <span
+                        th:text="${tempReply.answer}"/></td>
+            </tr>
+            </tbody>
+        </table>
 </div>
 
 </body>

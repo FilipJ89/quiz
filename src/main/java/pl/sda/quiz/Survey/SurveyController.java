@@ -1,19 +1,32 @@
 package pl.sda.quiz.Survey;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.sda.quiz.Question.QuestionRepository;
+import pl.sda.quiz.Reply.ReplyRepository;
 
 import javax.validation.Valid;
 import java.util.Optional;
 
+@NoArgsConstructor
 @Controller
 public class SurveyController {
 
-    @Autowired
     private SurveyRepository surveyRepository;
+    private QuestionRepository questionRepository;
+    private ReplyRepository replyRepository;
+
+    @Autowired
+    public SurveyController(SurveyRepository surveyRepository, QuestionRepository questionRepository, ReplyRepository replyRepository) {
+        this.surveyRepository = surveyRepository;
+        this.questionRepository = questionRepository;
+        this.replyRepository = replyRepository;
+    }
 
     @GetMapping("/new")
     public String showSurveyCreationForm(Model model) {
@@ -30,6 +43,7 @@ public class SurveyController {
         }
         Survey theSurvey = survey.get();
         model.addAttribute("survey",theSurvey);
+       // model.addAttribute()
         return "showSurvey";
     }
 
