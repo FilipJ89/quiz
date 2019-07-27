@@ -7,11 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.sda.quiz.Question.Question;
 import pl.sda.quiz.Question.QuestionRepository;
+import pl.sda.quiz.Reply.Reply;
 import pl.sda.quiz.Reply.ReplyRepository;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Controller
@@ -43,7 +50,6 @@ public class SurveyController {
         }
         Survey theSurvey = survey.get();
         model.addAttribute("survey",theSurvey);
-       // model.addAttribute()
         return "showSurvey";
     }
 
@@ -54,8 +60,42 @@ public class SurveyController {
             return "surveyForm";
         }
 
-        System.out.println(surveyForm.getTitle());
-        System.out.println(surveyForm.getDescription());
+        List<Reply> listAnswers = new ArrayList<>();
 
-        return "index";}
+        model.addAttribute(surveyForm);
+        Survey survey = new Survey();
+        survey.setTitle(surveyForm.getTitle());
+        survey.setDescription(surveyForm.getDescription());
+        survey.setCreationDate(LocalDate.now());
+        surveyRepository.save(survey);
+
+        List<Question> questions = surveyForm.getQuestions()
+                .stream()
+                .map(questionBlock -> {
+                    Question question = new Question();
+                    question.setQuestion(questionBlock.getQuestionText());
+                    question.setSurvey(survey);
+
+                    listAnswers.addAll(questionBlock.getAnswers()
+                            .stream()
+                            .map(replyBlock -> {
+                                Reply reply = new Reply();
+                                reply.setAnswer(replyBlock.getAnswer());
+                                reply.setQuestion(question);
+                                return reply;
+                            })
+                            .collect(Collectors.toList())
+                    );
+                    question.setAnswers(listAnswers);
+                    return question;})
+                .collect(Collectors.toList());
+        questionRepository.saveAll(questions);
+
+        replyRepository.saveAll(listAnswers);
+
+        return "index";
+    }
+
+
 }
+

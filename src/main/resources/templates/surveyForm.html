@@ -32,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 order-md-1">
-            <form id="form" method="POST" th:action="@{/new}" th:object="${surveyForm}">
+            <form id="form" method="POST" th:action="@{/new}" th:object="${surveyForm}" novalidate>
 
                 <div class="d-block my-3">
                     <label>Type</label>
@@ -111,7 +111,7 @@
         console.log('page loaded')
         $('#add-button').click(function () {
             let $clone = $('.row-template').attr('id', 'questions['+rowNumber+'].number').attr('data-remove-div', rowNumber).clone().removeClass('row-template');
-            $clone.find('.question-text').attr('id', 'questions'+rowNumber+'.question').attr('name', 'questions['+rowNumber+'].question');
+            $clone.find('.question-text').attr('id', 'questions'+rowNumber+'.questionText').attr('name', 'questions['+rowNumber+'].questionText');
             $clone.find('.question-replynumber').attr('id', 'questions['+rowNumber+'].replies').attr('data-select', rowNumber).change(function () {
                 let row = $(this).attr('data-select');
                 let replyNumber = $(this).val();
