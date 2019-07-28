@@ -2,11 +2,10 @@ package pl.sda.quiz.User;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.sda.quiz.Survey.Survey;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,4 +27,12 @@ public class User {
 
     @Column(name = "password")
     String password;
+
+    @ManyToMany
+    @JoinTable(
+            name = "survey_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "survey_id"))
+    Set<Survey> filledSurveys;
+
 }

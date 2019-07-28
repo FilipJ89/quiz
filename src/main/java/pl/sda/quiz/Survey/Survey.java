@@ -4,12 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.sda.quiz.Question.Question;
 import pl.sda.quiz.Reply.Reply;
+import pl.sda.quiz.User.User;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,6 +24,9 @@ public class Survey {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "title")
     private String title;
 
@@ -33,5 +38,8 @@ public class Survey {
 
     @OneToMany(mappedBy = "survey")
     private List <Question> questions;
+
+    @ManyToMany(mappedBy = "filledSurveys")
+    Set<User> fills;
 
 }

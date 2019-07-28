@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:display="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <div th:replace="fragments/libs :: libs"></div>
@@ -8,24 +8,33 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 
-<div th:object="${survey}" class="container">
-    <h3><span th:text="*{title}"/></h3>
-    <hr>
+
+<form th:action="@{/}" action="post">
+    <div th:object="${survey}" class="container">
+        <h3><span th:text="*{title}"/></h3>
+        <hr>
         <!--        odwołuje się do pola question w klasie Question-->
-        <h6><span th:text="*{questions.question}"/></h6>
+        <div th:each="question, stat : ${survey.questions}">
+            <h6><span th:text="${question.question}"/></h6>
 
-        <!--        style="display:inline-block"-->
-        <table class="table table-bordered table-striped" style="width: 200px">
-            <tbody>
-            <tr th:each="tempReply : *{question.replies}">
 
-                <!--                <td th:text="${tempReply.answer}" />-->
-                <td><input type="radio" value=th:text="${tempReply.answer}" name="answer"/> <span
-                        th:text="${tempReply.answer}"/></td>
-            </tr>
-            </tbody>
-        </table>
-</div>
+            <!--        style="display:inline-block"-->
+            <table class="table table-bordered table-striped" style="width: 200px">
+                <tbody>
+                <tr th:each="answer : ${question.answers}">
+
+                    <!--                <td th:text="${tempReply.answer}" />-->
+                    <td><input type="radio" value=th:text="${tempReply.answer}" th:field="${surveyForm.questions[__${stat.index}__].choice}"/> <span th:text="${answer.answer}"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <button class="btn btn-primary btn-sm mb-3" type="submit">Create</button>
+
+    </div>
+</form>
 
 </body>
 </html>

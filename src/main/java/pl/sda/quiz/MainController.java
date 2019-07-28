@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.sda.quiz.Survey.Survey;
 import pl.sda.quiz.Survey.SurveyRepository;
+import pl.sda.quiz.Survey.SurveyType;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -21,16 +24,17 @@ public class MainController {
     SurveyRepository surveyRepository;
 
     @GetMapping("/")
-    public String showMainPage(@RequestParam(name = "view", required = false) String view, Model model)
+    public String showMainPage(@RequestParam(name = "view" , required = false) String view, @RequestParam(name = "search", required = false) String search, Model model)
     {
-        if(view == null) {
-            view = "all";
+        List<Survey> surveys;
+        if (search == null || search.equals("")) {
+            surveys = surveyRepository.findAll();
+            model.addAttribute("view",view);
+        } else {
+            surveys= surveyRepository.findByTitleContains(search);
+            model.addAttribute("search",search);
         }
-        System.out.println(view);
-
-        List<Survey> surveys= surveyRepository.findAll();
         model.addAttribute("surveys", surveys);
-        model.addAttribute("view",view);
         return "index";
     }
 }

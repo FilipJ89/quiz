@@ -2,6 +2,7 @@ package pl.sda.quiz.Survey;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @NoArgsConstructor
 @Controller
 public class SurveyController {
@@ -38,6 +40,7 @@ public class SurveyController {
     @GetMapping("/new")
     public String showSurveyCreationForm(Model model) {
         model.addAttribute("surveyForm", new SurveyForm());
+        model.addAttribute("types", SurveyType.values());
         return "surveyForm";
     }
 
@@ -45,11 +48,17 @@ public class SurveyController {
     public String showSurvey(@RequestParam(value = "id") Integer id, Model model) {
 
         Optional<Survey> survey = surveyRepository.findById(id);
-        if(!survey.isPresent()) {
+        if (!survey.isPresent()) {
             throw new RuntimeException("Did not find survey id - " + id);
         }
+
+//        Optional<Question> question = questionRepository.findQuestionBySurvey(id);
         Survey theSurvey = survey.get();
-        model.addAttribute("survey",theSurvey);
+        model.addAttribute("survey", theSurvey);
+
+        SurveyForm surveyForm = new SurveyForm();
+        model.addAttribute("surveyForm", surveyForm);
+
         return "showSurvey";
     }
 
@@ -64,6 +73,7 @@ public class SurveyController {
 
         model.addAttribute(surveyForm);
         Survey survey = new Survey();
+        survey.setType(surveyForm.getType().getType());
         survey.setTitle(surveyForm.getTitle());
         survey.setDescription(surveyForm.getDescription());
         survey.setCreationDate(LocalDate.now());
@@ -95,7 +105,5 @@ public class SurveyController {
 
         return "index";
     }
-
-
 }
 

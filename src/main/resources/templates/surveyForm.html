@@ -27,25 +27,19 @@
 <div class="container">
     <div class="py-5 text-center">
         <h2>Create you own survey or quiz!</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group
-            has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <p class="lead">Use your imagination and create a crazy survey! World is counting on you.</p>
     </div>
     <div class="row">
         <div class="col-md-8 order-md-1">
             <form id="form" method="POST" th:action="@{/new}" th:object="${surveyForm}" novalidate>
 
-                <div class="d-block my-3">
+                <table class="mb-3">
                     <label>Type</label>
-                    <div class="custom-control custom-radio">
-                        <input id="survey" name="issurvey" type="radio" class="custom-control-input" checked
-                               required>
-                        <label class="custom-control-label" for="survey">Survey</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="quiz" name="issurvey" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="quiz">Quiz</label>
-                    </div>
-                </div>
+                    <td th:each="ty : ${types}" class="custom-control custom-radio">
+                        <input type="radio" th:field="*{type}" th:value="${ty}" class="custom-control-input"/>
+                        <label th:for="${#ids.prev('type')}" th:text="${ty}" class="custom-control-label"></label>
+                    </td>
+                </table>
 
                 <div class="mb-3">
                     <label>Title</label>
@@ -66,7 +60,7 @@
                 <div class="row row-template" style="display: none">
                     <div class="col-md-6 mb-3">
                         <label>Question</label>
-                        <input type="text" class="form-control question-text">
+                        <input type="text" class="form-control question-text" required>
 
                     </div>
                     <div class="col-md-6 mb-3">

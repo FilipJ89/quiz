@@ -16,6 +16,9 @@ import java.util.List;
 @ToString
 public class SurveyForm {
 
+
+    private SurveyType type;
+
     @NotBlank(message = "* field cannot be left empty")
     private String title;
 
@@ -23,23 +26,26 @@ public class SurveyForm {
     private String description;
 
     @NotNull(message = "* field cannot be null")
-    @NotEmpty(message = "* field cannot be left empty")
     private List<QuestionBlock> questions= new ArrayList<>();
 
     @Getter
     @Setter
     @NoArgsConstructor
     public static class QuestionBlock {
-        private List<ReplyBlock> answers = new ArrayList<>();
-        private String questionText;
-        private String choice;
 
+        private List<ReplyBlock> answers = new ArrayList<>();
+
+        @NotEmpty(message = "* field cannot be left empty")
+        private String questionText;
+
+        private String choice;
     }
 
     @Getter
     @Setter
     @NoArgsConstructor
     public static class ReplyBlock {
+        @NotEmpty(message = "* field cannot be left empty")
         String answer;
     }
 

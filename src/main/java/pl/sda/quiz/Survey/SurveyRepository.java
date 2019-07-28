@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
-    public List<Survey> findByTitleContains(String text);
+    List<Survey> findByTitleContains(String text);
 }

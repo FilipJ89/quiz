@@ -22,7 +22,7 @@
     <div th:each="survey : ${surveys}" class="col-md-6">
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-primary">Quiz</strong>
+                <strong class="d-inline-block mb-2 text-primary" th:text="${survey.type}"></strong>
                 <h3 class="mb-0" th:text="${survey.title}"></h3>
                 <div class="mb-1 text-muted">
                     <div style="width: 50%" >
